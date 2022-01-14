@@ -1,0 +1,38 @@
+{
+    "name": "yangweijie\/think-inspector",
+    "description": "inspector package for thinkphp",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "yangweijie",
+            "email": "917647288@qq.com"
+        }
+    ],
+    "keywords": [
+        "php",
+        "thinkphp",
+        "inspector",
+        "monitoring",
+        "trace"
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "topthink/framework": "6.0.*",
+        "inspector-apm/inspector-php":"^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "think\\Inspector\\": "src"
+        }
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "think\\Inspector\\InspectorService"
+            ],
+            "config": {
+                "inspector": "config/config.php"
+            }
+        }
+    }
+}
