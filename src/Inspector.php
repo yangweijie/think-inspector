@@ -15,6 +15,7 @@ class Inspector
         'enable'    => true,
         'max_items' => 100,
         'env'       => 'test',
+        'url'       => '',
         'single'    => true,
     ];
 
@@ -28,6 +29,11 @@ class Inspector
         $configuration = new Configuration($this->options['key']);
         $configuration->setEnabled($this->options['enable']);
         $configuration->setMaxItems($this->options['max_items']);
+        if($this->options['url']){
+            $configuration->setUrl($this->options['url']);
+        }
+        $configuration->setTransport('curl');
+        // trace($configuration);
         $ins           = new InspectorOrignal($configuration);
         $this->ins     = $ins;
 
@@ -102,5 +108,13 @@ class Inspector
             unset($this->segments[$type]);
             return $ret;
         }
+    }
+
+    public static function log($message){
+        $file = ini_get('error_log');
+        if(!is_string($message)){
+            $message = json_encode($message, JSON_UNESCAPED_UNICODE);
+        }
+        return file_put_contents($file, $message.PHP_EOL, FILE_APPEND);
     }
 }
