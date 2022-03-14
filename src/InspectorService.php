@@ -61,8 +61,9 @@ class InspectorService extends Service
                         ->start($start)
                         ->end($runtime*1000);
                     // $inspector->startSegment($driver, $label);
+                    trace($sql, 'sql');
                 }else{
-
+                    trace($sql, 'sql');
                 }
             });
         }
